@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navegador nav{
+    background-color: cornflowerblue;
+}
+
+.titulo{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+.tabla {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+  }
+
+  table.cita {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+  }
+
+  table.cita th {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    
+  }
+
+  table.cita td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    font-weight: bold;
+  }
+
+button{
+
+    padding: 8px 7px;
+    border: none;
+    border-radius: 5px;
+}
+
+  .crud-buttons{
+    margin-top: 10px;
+    text-align: right;
+  }
+
+  .editarBtn {
+    background-color: green;
+    color: #ffff;
+  }
+
+  .eliminarBtn{
+    background-color: red;
+    color: #ffff;
+  }
+
+  .agregarBtn {
+    margin-right: 10px;
+    background-color: #6a92f7;
+    color: #ffff;
+  }

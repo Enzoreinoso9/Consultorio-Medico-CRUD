@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+body{
+
+  background-image: url(../img/fondo6.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
 /*NAVEGADOR*/
 .navegador nav{
     background-color: cornflowerblue ;
@@ -13,13 +21,14 @@
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+  color: #fff;
 }
 
 /*TABLA*/
 .tabla {
     margin: 20px auto;
-    padding: 20px;
-    width: 80%;
+    padding: 30px;
+    width: 90%;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -106,4 +115,30 @@ button{
 
 .cerrar-formulario:hover {
     color: red;
+}
+
+.form-grupo{
+  margin-bottom: 10px;
+}
+
+.form-grupo label{
+
+  display: block;
+  margin-bottom: 3px;
+}
+
+.form-grupo input{
+  width: 100%;
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+.guardar{
+
+  background-color: darkcyan;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
 }

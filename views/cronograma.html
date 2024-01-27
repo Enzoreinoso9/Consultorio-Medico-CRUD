@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="sustituciones.css">
+    <link rel="stylesheet" href="cronograma.css">
 </head>
-
 <body>
-
+    
   <!--NAVEGADOR-->
     <div class="navegador">
         <nav class="navbar navbar-expand-lg bg-body-white">
@@ -57,46 +55,47 @@
       </div>
 
       <!--TITULO-->
-      <h2 class="titulo">SUSTITUCIONES</h2>
+    <h2 class="titulo">CRONOGRAMA MEDICOS</h2>
 
 <!--TABLA-->
-      <div class="tabla">
-  
-          <table class="sustitucion">
-              <thead>
-                  <tr>
-                      <th>id</th>
-                      <th>Id del Medico</th>
-                      <th>Apellido del Medico</th>
-                      <th>Alta Suplencia</th>
-                      <th>Baja Suplencia</th>
-                      <th>Tipo de Revista</th>
-                      <th>Acciones</th>
-                  </tr>
-              </thead>
-  
-              <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>Gon</td>
-                      <td>2024-01-22</td>
-                      <td>2024-02-21</td>
-                      <td>Medica Mensual</td>
-                      <td style="white-space: nowrap;">
-                          <button class="editarBtn" onclick="">Editar</button>
-                          <button class="eliminarBtn" onclick="">Eliminar</button>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-  
-          <div class="crud-buttons">
-              <button class="agregarBtn" onclick="">Agregar</button>
-          </div>
-      </div>
-      
-<script src="../js/bootstrap.bundle.min.js"></script>
-</body>
+    <div class="tabla">
 
+        <table class="cronograma">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombres</th>
+                    <th>Apellido</th>
+                    <th>Especialidad</th>
+                    <th>Días Laborales</th>
+                    <th>Horario de incio de Consultas</th>
+                    <th>Horario de cierre de Consultas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Luana Magali</td>
+                    <td>Gon</td>
+                    <td>General</td>
+                    <td>Lunes a Jueves</td>
+                    <td>17:00:00</td>
+                    <td>20:00:00</td>
+                    <td style="white-space: nowrap;">
+                        <button class="editarBtn" onclick="">Editar</button>
+                        <button class="eliminarBtn" onclick="">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="crud-buttons">
+            <button class="agregarBtn" onclick="">Agregar</button>
+        </div>
+    </div>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

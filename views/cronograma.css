@@ -24,14 +24,14 @@
     
   }
 
-  table.sustitucion {
+  table.cronograma {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     
   }
 
-  table.sustitucion th {
+  table.cronograma th {
     background-color: #333;
     color: white;
     text-align: center;
@@ -40,7 +40,7 @@
     
   }
 
-  table.sustitucion td {
+  table.cronograma td {
     text-align: center;
     padding: 10px;
     border: 1px solid black;

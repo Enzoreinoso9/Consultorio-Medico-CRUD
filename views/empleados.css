@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+body{
+  background-image: url(../img/fondo2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .navegador nav{
     background-color: cornflowerblue;
 }

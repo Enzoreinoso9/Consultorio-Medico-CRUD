@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = ""; //Ingresar base de datos
+$database = "consultorio_medico"; //Ingresar base de datos
 
 
 $conn = new mysqli($host,$username,$password,$database);

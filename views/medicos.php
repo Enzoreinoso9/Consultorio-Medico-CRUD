@@ -15,34 +15,34 @@
   <div class="navegador">
     <nav class="navbar navbar-expand-lg bg-body-white">
       <div class="container-fluid">
-        <a class="navbar-brand" href="menu.html" style="color: white;"><b>MAPRIFOR</b></a>
+        <a class="navbar-brand" href="menu.php" style="color: white;"><b>MAPRIFOR</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="medicos.html"><b>Medicos</b></a>
+              <a class="nav-link active" aria-current="page" href="medicos.php"><b>Medicos</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="empleados.html"><b>Empleados</b></a>
+              <a class="nav-link" href="empleados.php"><b>Empleados</b></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <b>Opciones</b>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="cronograma.html">Cronograma Medicos</a></li>
-                <li><a class="dropdown-item" href="citas.html">Citas</a></li>
-                <li><a class="dropdown-item" href="vacaciones.html">Vacaciones</a></li>
-                <li><a class="dropdown-item" href="sustituciones.html">Sustituciones</a></li>
-                <li><a class="dropdown-item" href="medicamentos.html">Medicamentos</a></li>
-                <li><a class="dropdown-item" href="documentacion.html">Documentación</a></li>
-                <li><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
+                <li><a class="dropdown-item" href="cronograma.php">Cronograma Medicos</a></li>
+                <li><a class="dropdown-item" href="citas.php">Citas</a></li>
+                <li><a class="dropdown-item" href="vacaciones.php">Vacaciones</a></li>
+                <li><a class="dropdown-item" href="sustituciones.php">Sustituciones</a></li>
+                <li><a class="dropdown-item" href="medicamentos.php">Medicamentos</a></li>
+                <li><a class="dropdown-item" href="documentacion.php">Documentación</a></li>
+                <li><a class="dropdown-item" href="direcciones.php">Direcciones</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pacientes.html"><b>Pacientes</b></a>
+              <a class="nav-link" href="pacientes.php"><b>Pacientes</b></a>
             </li>
           </ul>
           <form class="d-flex" role="search">
@@ -78,7 +78,7 @@
 
       <tbody>
         <?php
-        include 'connection.php';
+        include '../config/connection.php';
 
         $sql =  "SELECT
         medicos.id_medico,
@@ -122,7 +122,7 @@
             echo "<td>" . $row["especialidad"] . "</td>";
             echo '<td style="white-space: nowrap;">
               <button class="editarBtn" onclick="">Editar</button>
-              <button class="eliminarBtn" onclick="">Eliminar</button>
+              <button class="eliminarBtn" href="../config/eliminar_medico.php?id=' . $row["id_medico"] . '"  onclick="confirmacion(event)">Eliminar</button>
             </td>';
             echo "</tr>";
           }
@@ -155,7 +155,7 @@
     <div class="formulario">
       <span id="cerrar" class="cerrar-formulario">&times;</span>
       <h2>Registrar Medico</h2>
-      <form class="medico-form" action="guardar-medico.php" method="post">
+      <form class="medico-form" action="../config/guardar-medico.php" method="post">
 
         <div class="form-grupo">
           <label for="">Nombres:</label>

@@ -21,6 +21,16 @@ body{
     color: #ffff;
 }
 
+/*DISEÑO NAVEGADOR DE TABLA*/
+.nav-tabs .nav-link {
+    color: white; /* Color por defecto cuando no está seleccionado */
+}
+
+.nav-tabs .nav-link.active {
+    color: black; /* Color cuando está seleccionado */
+}
+
+/*DISEÑO TABLA*/
 .conten-container{
     background-color: #ffff;
     padding: 20px;
@@ -32,7 +42,7 @@ body{
     margin: 20px auto;
     padding: 20px;
     width: 80%;
-    background-color: white;
+    background-color: #ffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 

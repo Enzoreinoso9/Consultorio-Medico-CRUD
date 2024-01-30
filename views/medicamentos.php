@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="documentacion.css">
+    <link rel="stylesheet" href="medicamentos.css">
 </head>
-
 <body>
 
     <!--NAVEGADOR-->
     <div class="navegador">
         <nav class="navbar navbar-expand-lg bg-body-white">
             <div class="container-fluid">
-                <a class="navbar-brand" href="menu.html" style="color: white;"><b>MAPRIFOR</b></a>
+                <a class="navbar-brand" href="menu.php" style="color: white;"><b>MAPRIFOR</b></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="medicos.html"><b>Medicos</b></a>
+                            <a class="nav-link active" aria-current="page" href="medicos.php"><b>Medicos</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="empleados.html"><b>Empleados</b></a>
@@ -35,17 +33,17 @@
                                 <b>Opciones</b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="cronograma.html">Cronograma Medicos</a></li>
-                                <li><a class="dropdown-item" href="citas.html">Citas</a></li>
-                                <li><a class="dropdown-item" href="vacaciones.html">Vacaciones</a></li>
-                                <li><a class="dropdown-item" href="sustituciones.html">Sustituciones</a></li>
-                                <li><a class="dropdown-item" href="medicamentos.html">Medicamentos</a></li>
-                                <li><a class="dropdown-item" href="documentacion.html">Documentación</a></li>
-                                <li><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
+                                <li><a class="dropdown-item" href="cronograma.php">Cronograma Medicos</a></li>
+                                <li><a class="dropdown-item" href="citas.php">Citas</a></li>
+                                <li><a class="dropdown-item" href="vacaciones.php">Vacaciones</a></li>
+                                <li><a class="dropdown-item" href="sustituciones.php">Sustituciones</a></li>
+                                <li><a class="dropdown-item" href="medicamentos.php">Medicamentos</a></li>
+                                <li><a class="dropdown-item" href="documentacion.php">Documentación</a></li>
+                                <li><a class="dropdown-item" href="direcciones.php">Direcciones</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pacientes.html"><b>Pacientes</b></a>
+                            <a class="nav-link" href="pacientes.php"><b>Pacientes</b></a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -57,38 +55,35 @@
         </nav>
     </div>
 
-<!--TITULO-->
-    <h2 class="titulo">DOCUMENTACIÓN</h2>
+    <!--TITULO-->
+    <h2 class="titulo">MEDICAMENTOS</h2>
 
     <!--NAVEGADOR DE TABLAS-->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#" onclick="mostrarTabla('table-medicos', event)">Medicos</a>
+            <a class="nav-link active" aria-current="page" href="#" onclick="mostrarTabla('table-medicamentos', event)">Medicamentos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"  onclick="mostrarTabla('table-empleados',event)">Empleados</a>
+            <a class="nav-link" href="#"  onclick="mostrarTabla('table-prescripcion',event)">Prescripciones</a>
         <li class="nav-item">
-            <a class="nav-link " href="#" onclick="mostrarTabla('table-pacientes', event)">Pacientes</a>
+            <a class="nav-link " href="#" onclick="mostrarTabla('table-historial', event)">Historial de Medicamentos</a>
         </li>
     </ul>
 
     <!--TABLAS-->
-    <div id="table-medicos" class="table-container">
+    <div id="table-medicamentos" class="table-container">
 
         <div class="tabla">
 
-            <table class="documentacion">
+            <table class="medicamento">
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>id del Medico</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Tipo de Documento</th>
-                        <th>DNI</th>
-                        <th>NIF</th>
-                        <th>NSS</th>
-                        <th>Número Colegiado</th>
+                        <th>Nombre del Medicamento</th>
+                        <th>Descripción</th>
+                        <th>Ingrediente Activo</th>
+                        <th>Posología</th>
+                        <th>Retriscciones</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -96,14 +91,11 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>1</td>
-                        <td>Luana Magali</td>
-                        <td>Gon</td>
-                        <td>DNI</td>
-                        <td>41351343</td>
-                        <td>20413513430</td>
-                        <td>913423123425</td>
-                        <td>MED-2524</td>
+                        <td>Acetofin</td>
+                        <td>Medicamento analgesico, para el alivio temporal de dolores moderado como dolores de cabeza.</td>
+                        <td>Acetaminofeno</td>
+                        <td>Tomar 1 o 2 tabletas de 500mg cada 4 a 6 horas, segun sea necesario.</td>
+                        <td>No exceder de 8 tabletas en un periodo de 24 horas.</td>
                         <td style="white-space: nowrap;">
                             <button class="editarBtn" onclick="">Editar</button>
                             <button class="eliminarBtn" onclick="">Eliminar</button>
@@ -120,22 +112,18 @@
 
 
 
-    <div id="table-empleados" class="table-container">
+    <div id="table-prescripcion" class="table-container">
 
         <div class="tabla">
 
-            <table class="documentacion">
+            <table class="medicamento">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>id del empleado</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Puesto de Trabajo</th>
-                        <th>Tipo de Documento</th>
-                        <th>DNI</th>
-                        <th>NIF</th>
-                        <th>NSS</th>
+                        <th>Id Prescripción</th>
+                        <th>Fecha de Prescripción</th>
+                        <th>Medicamento</th>
+                        <th>Medico Encargado</th>
+                        <th>Paciente Recetado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -143,14 +131,10 @@
                 <tbody>
                     <tr>
                         <td>1</td>
+                        <td>2024-01-24</td>
+                        <td>Acetofin</td>
                         <td>1</td>
-                        <td>Enzo Exequiel</td>
-                        <td>Reinoso</td>
-                        <td>Aux. Enfermeria</td>
-                        <td>Pasaporte</td>
-                        <td>41351343</td>
-                        <td>20413513430</td>
-                        <td>20134534261</td>
+                        <td>1</td>
                         <td style="white-space: nowrap;">
                             <button class="editarBtn" onclick="">Editar</button>
                             <button class="eliminarBtn" onclick="">Eliminar</button>
@@ -167,22 +151,18 @@
 
 
 
-    <div id="table-pacientes" class="table-container">
+    <div id="table-historial" class="table-container">
 
         <div class="tabla">
 
-            <table class="documentacion">
+            <table class="medicamento">
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Nombres</th>
-                        <th>Apellido</th>
-                        <th>Sexo</th>
-                        <th>Fecha Nacimiento</th>
-                        <th>Telefono</th>
-                        <th>Correo</th>
-                        <th>Tipo de Medico</th>
-                        <th>Especialidades</th>
+                        <th>Paciente Medicado</th>
+                        <th>Medicamento Recetado</th>
+                        <th>Fecha Inicial de Consumo</th>
+                        <th>Fecha de Finalización de Consumo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -190,14 +170,10 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>aaaaaa</td>
-                        <td>Gon</td>
-                        <td>Femenino</td>
-                        <td>16/04/2003</td>
-                        <td>3704944825</td>
-                        <td>magali@gmail.com</td>
-                        <td>Titular</td>
-                        <td>General</td>
+                        <td>1</td>
+                        <td>Acetofin</td>
+                        <td>2024-01-24</td>
+                        <td>2024-02-01</td>
                         <td style="white-space: nowrap;">
                             <button class="editarBtn" onclick="">Editar</button>
                             <button class="eliminarBtn" onclick="">Eliminar</button>
@@ -212,8 +188,9 @@
         </div>
     </div>
 
+
+    
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../functions/documentacion.js"></script>
+    <script src="../functions/medicamentos.js"></script>
 </body>
-
 </html>

@@ -1,3 +1,5 @@
+
+//FUNCION PARA AGREGAR MEDICOS
 document.addEventListener("DOMContentLoaded", function () {
     var botonAgregar = document.getElementById("agregar");
     var contenedorFormulario = document.getElementById("formularioContainer");
@@ -23,3 +25,25 @@ document.addEventListener("DOMContentLoaded", function () {
         event.stopPropagation();
     });
 });
+
+
+//FUNCION PARA ELIMINAR MEDICOS
+
+function confirmacion(event) {
+    if (confirm("¿Quieres eliminar este registro?")) {
+        return true;
+    } else {
+        event.preventDefault();
+    }
+}
+
+
+let linkdelete = document.querySelectorAll(".eliminarBtn");
+for (var i = 0 ; i < linkdelete.length ; i++) {
+    linkdelete[i].addEventListener("click", confirmacion);
+}
+
+
+
+
+

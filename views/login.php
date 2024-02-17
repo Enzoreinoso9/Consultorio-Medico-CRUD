@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,30 +11,31 @@
 
 <body>
 
-<div class="contenedor">
+    <div class="contenedor">
 
 
-    <form method="post">
+        <form method="post">
 
-    <div class="loginForm">
+            <div class="loginForm">
 
-    <h2>¡Bienvenido!</h2> 
+                <h2>¡Bienvenido!</h2>
 
-    <label for="">Ingresar usuario:</label>
-    <input type="text" name="username" class="controls" id="username">
+                <label for="">Ingresar usuario:</label>
+                <input type="text" name="username" class="controls" id="username">
 
-    <label for="">Ingresar Contraseña:</label>
-    <input type="text" name="contraseña" class="controls" id="contraseña">
+                <label for="">Ingresar Contraseña:</label>
+                <input type="text" name="contraseña" class="controls" id="contraseña">
 
-    <input type="submit" value="Ingresar" class="boton">
-    <p class="registro"><a href="registro.html">Clik aquí para registrarte</a></p>
-    
-    </div>
-    </form>
+                <input type="submit" value="Ingresar" class="boton">
+                <p class="registro"><a href="registro.html">Clik aquí para registrarte</a></p>
 
-<footer>
+            </div>
+        </form>
 
-</footer>
+        <footer>
+
+        </footer>
     </div>
 </body>
+
 </html>

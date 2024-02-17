@@ -60,7 +60,7 @@
     <div class="tipo-opciones">
 
       <div class="imagenes">
-        <a href="medicos.html">
+        <a href="medicos.php">
           <img src="../img/cirugia.jpg" alt="">
           <div class="overlay">
             <h1>Medicos</h1>
@@ -69,7 +69,7 @@
       </div>
 
       <div class="imagenes">
-        <a href="empleados.html">
+        <a href="empleados.php">
           <img src="../img/union.jpg" alt="">
           <div class="overlay">
             <h1>Empleados</h1>
@@ -78,7 +78,7 @@
       </div>
 
       <div class="imagenes">
-        <a href="pacientes.html">
+        <a href="pacientes.php">
           <img src="../img/pacientes.jpg" alt="">
           <div class="overlay">
             <h1>Pacientes</h1>

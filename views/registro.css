@@ -1,12 +1,11 @@
-
-*{
+* {
 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
 
     background-image: url(img/celeste.jpg);
     background-repeat: no-repeat;
@@ -18,7 +17,7 @@ body{
 .datosForm h2,
 .direccionForm h2,
 .documentacionForm h2,
-.cargoForm h2{
+.cargoForm h2 {
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -42,7 +41,7 @@ body{
     margin-bottom: 50px;
 }
 
-.controls{
+.controls {
 
     width: 100%;
     padding: 10px;
@@ -140,13 +139,15 @@ body{
     box-sizing: border-box;
 }
 
-.cargoForm select{
+.cargoForm select {
 
     margin-bottom: 0px;
 }
 
 
-.opcionMedico, .opcionEmpleado, .opcionPaciente {
+.opcionMedico,
+.opcionEmpleado,
+.opcionPaciente {
     display: none;
     margin-bottom: 10px;
 }

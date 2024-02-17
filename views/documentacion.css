@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+body{
+  background-image: url(../img/fondo6.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .navegador nav{
     background-color: cornflowerblue;
 }
@@ -12,17 +18,26 @@
     text-align: center;
     margin-top: 50px;
     margin-bottom: 50px;
+    color: #fff;
   }
 
-.tabla {
-    margin: 20px auto;
-    padding: 20px;
-    width: 80%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-  }
+   /*DISEÑO NAVEGADOR DE TABLA*/
+.nav-tabs .nav-link {
+  color: white; /* Color por defecto cuando no está seleccionado */
+}
+
+.nav-tabs .nav-link.active {
+  color: black; /* Color cuando está seleccionado */
+}
+
+/*DISEÑO TABLA*/
+
+.conten-container{
+  background-color: #ffff;
+  padding: 20px;
+  min-height: calc(100vh - 40px);
+
+}
 
   table.documentacion {
     width: 100%;

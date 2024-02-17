@@ -25,15 +25,12 @@ body{
 }
 
 /*TABLA*/
-.tabla {
-    margin: 20px auto;
-    padding: 30px;
-    width: 90%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-  }
+.conten-container {
+  background-color: #ffff;
+  padding: 20px;
+  min-height: calc(100vh - 40px);
+}
+
 
   table.medico {
     width: 100%;
@@ -98,6 +95,7 @@ button{
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .formulario {
@@ -105,7 +103,10 @@ button{
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    width: 500px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
 
 .cerrar-formulario {
     float: right;

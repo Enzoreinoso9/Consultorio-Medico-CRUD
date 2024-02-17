@@ -1,37 +1,38 @@
-<?php 
-
+<?php
 include 'connection.php';
 
-if ($conn->connect_error) {
-    die("La conexión falló: " . $conn->connect_error);
-}
-
+// Verificar si se proporciona un ID válido
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $eliminar_relaciones = "DELETE FROM medicosxespecialidades WHERE id_medico='$id'";
+    // Eliminar relaciones en la tabla medicosXespecialidades
+    $eliminar_relaciones = "DELETE FROM medicosXespecialidades WHERE id_medico='$id'";
     $resultado_relaciones = mysqli_query($conn, $eliminar_relaciones);
-    // Preparar la consulta de eliminación
-    $eliminar = "DELETE FROM medicos WHERE id_medico='$id'";
-    $resultado = mysqli_query($conn, $eliminar);
-    // Preparar la consulta de eliminación
-    $eliminar = "DELETE FROM medicos WHERE id_medico='$id'";
-    $resultado = mysqli_query($conn, $eliminar);
 
-    // Verificar si la consulta fue exitosa
-    if ($resultado) {
-        echo "El médico ha sido eliminado exitosamente.";
-    } else {
-        echo "Error al intentar eliminar el médico: " . mysqli_error($conn);
+    // Verificar si la eliminación de relaciones fue exitosa
+    if (!$resultado_relaciones) {
+        echo "Error al intentar eliminar relaciones: " . mysqli_error($conn);
+        exit; // Salir del script si hay un error
     }
+
+    // Eliminar al médico de la tabla medicos
+    $eliminar_medico = "DELETE FROM medicos WHERE id_medico='$id'";
+    $resultado_medico = mysqli_query($conn, $eliminar_medico);
+
+    // Verificar si la eliminación del médico fue exitosa
+    if (!$resultado_medico) {
+        echo "Error al intentar eliminar el médico: " . mysqli_error($conn);
+        exit; // Salir del script si hay un error
+    }
+
+    // Si llegamos aquí, la eliminación fue exitosa
+    echo "El médico ha sido eliminado exitosamente.";
 } else {
+    // Si no se proporciona un ID válido
     echo "ID no proporcionado o no válido.";
 }
-
-mysqli_close($conn);
 
 // Redirigir a medicos.php después de 2 segundos
 header("refresh:2;url=../views/medicos.php");
 exit;
-
 ?>

@@ -57,8 +57,16 @@
   <!--TITULO-->
   <h2 class="titulo">MEDICOS</h2>
 
+ <!--NAVEGADOR DE TABLAS-->
+
+ <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#" >Medicos</a>
+    </li>
+  </ul>
+
   <!--TABLA-->
-  <div class="tabla">
+  <div class="conten-container">
 
     <table class="medico">
       <thead>
@@ -122,17 +130,13 @@
             echo "<td>" . $row["especialidad"] . "</td>";
             echo '<td style="white-space: nowrap;">
               <button class="editarBtn" onclick="">Editar</button>
-              <button class="eliminarBtn" href="../config/eliminar_medico.php?id=' . $row["id_medico"] . '"  onclick="confirmacion(event)">Eliminar</button>
-            </td>';
+              <a href="../config/eliminar-medico.php?id=' . $row["id_medico"] . '" class="eliminarBtn" >Eliminar</a>
+              </td>';
             echo "</tr>";
           }
         } else { //No hay registros ingresados
           echo "<tr>";
-          echo "<td colspan='9'>No hay registros</td>";
-          echo '<td style="white-space: nowrap;">
-                <button class="editarBtn" onclick="">Editar</button>
-                <button class="eliminarBtn" onclick="">Eliminar</button>
-              </td>';
+          echo "<td colspan='10'>No hay registros</td>";
           echo "</tr>";
         }
 
@@ -146,7 +150,8 @@
     <div class="crud-buttons">
       <button id="agregar" class="agregarBtn">Agregar</button>
     </div>
-  </div>
+
+    </div>
 
 
 
@@ -208,6 +213,7 @@
 
 
   <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../functions/jquery.js"></script>
   <script src="../functions/medicos.js"></script>
 </body>
 

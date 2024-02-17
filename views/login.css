@@ -1,15 +1,15 @@
-*{
+* {
 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
 
-background-image: url(img/celeste.jpg);
-background-repeat: no-repeat;
-background-size:cover;
+    background-image: url(img/celeste.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .loginForm {
@@ -29,7 +29,7 @@ background-size:cover;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.loginForm label{
+.loginForm label {
     display: block;
     margin-bottom: 10px;
     margin-top: 20px;
@@ -37,7 +37,7 @@ background-size:cover;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.controls{
+.controls {
 
     width: 100%;
     padding: 10px;
@@ -47,7 +47,7 @@ background-size:cover;
     font-size: 10px;
 }
 
-.boton{
+.boton {
 
     width: 100%;
     padding: 10px;
@@ -61,11 +61,11 @@ background-size:cover;
     margin-bottom: 20px;
 }
 
-.boton:hover{
+.boton:hover {
 
-    background-color:#3468C0 ;
+    background-color: #3468C0;
 }
 
-p{
+p {
     text-align: center;
 }

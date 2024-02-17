@@ -16,8 +16,7 @@
     <nav class="navbar navbar-expand-lg bg-body-white">
       <div class="container-fluid">
         <a class="navbar-brand" href="menu.php" style="color: white;"><b>MAPRIFOR</b></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -29,8 +28,7 @@
               <a class="nav-link" href="empleados.php"><b>Empleados</b></a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <b>Opciones</b>
               </a>
               <ul class="dropdown-menu">
@@ -60,22 +58,21 @@
   <h2 class="titulo"> VACACIONES</h2>
 
 
-    <!--NAVEGADOR DE TABLAS-->
+  <!--NAVEGADOR DE TABLAS-->
 
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#"
-          onclick="mostrarTabla('table-medicos', event)">Medicos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" onclick="mostrarTabla('table-empleados',event)">Empleados</a>
-    </ul>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#" onclick="mostrarTabla('table-medicos', event)">Medicos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" onclick="mostrarTabla('table-empleados',event)">Empleados</a>
+  </ul>
 
-    <!--TABLAS-->
-<div class="conten-container">
+  <!--TABLAS-->
+  <div class="conten-container">
     <div id="table-medicos" class="table-container">
 
-      <div class="tabla">
+      
 
         <table class="vacaciones">
           <thead>
@@ -115,7 +112,7 @@
         <div class="crud-buttons">
           <button id="agregar" class="agregarBtn">Agregar</button>
         </div>
-      </div>
+      
     </div>
 
 
@@ -164,9 +161,60 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
+
+  <!--FORMULARIO PARA AGREGAR DATOS-->
+  <div id="formularioContainer" class="formulario-container">
+    <div class="formulario">
+      <span id="cerrar" class="cerrar-formulario">&times;</span>
+      <h2>Registrar Empleado</h2>
+      <form class="vacaciones-form" action="../config/.php" method="post">
+
+        <div class="form-grupo">
+          <label for="">Nombres:</label>
+          <input type="text" name="nombre" id="nombre">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Apellido:</label>
+          <input type="text" name="apellido" id="apellido">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Sexo:</label>
+          <input type="text" name="sexo" id="sexo">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Fecha Nacimiento:</label>
+          <input type="text" name="fechaN" id="fechaN">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Telefono:</label>
+          <input type="text" name="telefono" id="telefono">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Correo:</label>
+          <input type="email" name="correo" id="correo">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Puesto de Trabajo:</label>
+          <input type="text" name="puesto" id="puesto">
+        </div>
+
+        <input type="submit" name="Guardar" class="guardar" value="Guardar">
+
+      </form>
+
+    </div>
+
+  </div>
 
   <script src="../js/bootstrap.bundle.min.js"></script>
   <script src="../functions/vacaciones.js"></script>
 </body>
+
 </html>

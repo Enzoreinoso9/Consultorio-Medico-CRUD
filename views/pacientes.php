@@ -95,10 +95,69 @@
       </table>
   
       <div class="crud-buttons">
-        <button class="agregarBtn" onclick="">Agregar</button>
+        <button id="agregar" class="agregarBtn" onclick="">Agregar</button>
       </div>
     </div>
 
+
+     <!--FORMULARIO PARA AGREGAR DATOS-->
+  <div id="formularioContainer" class="formulario-container">
+    <div class="formulario">
+      <span id="cerrar" class="cerrar-formulario">&times;</span>
+      <h2>Registrar Medico</h2>
+      <form class="paciente-form" action="../config/guardar-medico.php" method="post">
+
+        <div class="form-grupo">
+          <label for="">Nombres:</label>
+          <input type="text" name="nombre" id="nombre">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Apellido:</label>
+          <input type="text" name="apellido" id="apellido">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Sexo:</label>
+          <input type="text" name="sexo" id="sexo">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Fecha Nacimiento:</label>
+          <input type="text" name="fechaN" id="fechaN">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Telefono:</label>
+          <input type="text" name="telefono" id="telefono">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Correo:</label>
+          <input type="email" name="correo" id="correo">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Medico Encargado:</label>
+          <input type="text" name="tipo" id="tipo">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Informe Medico:</label>
+          <textarea name="informe" id="informe" cols="60" rows="4" placeholder="Escribe aquí la información del paciente.."></textarea>
+        </div>
+
+
+        <input type="submit" name="Guardar" class="guardar" value="Guardar">
+
+      </form>
+
+    </div>
+
+  </div>
+
+  
   <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../functions/pacientes.js"></script>
 </body>
 </html>

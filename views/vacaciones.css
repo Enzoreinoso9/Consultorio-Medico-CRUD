@@ -4,12 +4,13 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-image: url(../img/fondo6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+/*NAVEGADOR*/
 .navegador nav {
     background-color: cornflowerblue;
 }
@@ -23,30 +24,23 @@ body{
 
 /*DISEÑO NAVEGADOR DE TABLA*/
 .nav-tabs .nav-link {
-    color: white; /* Color por defecto cuando no está seleccionado */
+    color: white;
+    /* Color por defecto cuando no está seleccionado */
 }
 
 .nav-tabs .nav-link.active {
-    color: black; /* Color cuando está seleccionado */
+    color: black;
+    /* Color cuando está seleccionado */
 }
 
 /*DISEÑO TABLA*/
-.conten-container{
+.conten-container {
     background-color: #ffff;
     padding: 20px;
     min-height: calc(100vh - 40px);
-
 }
 
-.tabla {
-    margin: 20px auto;
-    padding: 20px;
-    width: 80%;
-    background-color: #ffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-}
 
 table.vacaciones {
     width: 100%;
@@ -104,5 +98,5 @@ button {
 #table-empleados,
 #table-pacientes {
 
-  display: none;
+    display: none;
 }

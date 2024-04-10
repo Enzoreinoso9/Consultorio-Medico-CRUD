@@ -55,7 +55,7 @@
     </div>
 
     <!--TITULO-->
-    <h2 class="titulo">DOCUMENTACIÓN</h2>
+    <h2 class="titulo">REGISTRO DE LAS DOCUMENTACIONES</h2>
 
     <!--NAVEGADOR DE TABLAS-->
     <ul class="nav nav-tabs">

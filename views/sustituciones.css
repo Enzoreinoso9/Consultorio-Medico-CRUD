@@ -21,14 +21,10 @@ body{
     color: #fff;
   }
 
-.tabla {
-    margin: 20px auto;
+  .conten-container {
+    background-color: #ffff;
     padding: 20px;
-    width: 80%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
+    min-height: calc(100vh - 40px);
   }
 
   table.sustitucion {

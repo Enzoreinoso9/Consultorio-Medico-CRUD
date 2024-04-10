@@ -55,10 +55,18 @@
   </div>
 
   <!--TITULO-->
-  <h2 class="titulo">CRONOGRAMA MEDICOS</h2>
+  <h2 class="titulo">CRONOGRAMA DE LOS MEDICOS</h2>
+
+  <!--NAVEGADOR DE TABLAS-->
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Cronograma</a>
+    </li>
+  </ul>
 
   <!--TABLA-->
-  <div class="tabla">
+  <div class="conten-container">
 
     <table class="cronograma">
       <thead>

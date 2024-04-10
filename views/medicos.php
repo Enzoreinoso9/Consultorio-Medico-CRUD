@@ -55,13 +55,13 @@
   </div>
 
   <!--TITULO-->
-  <h2 class="titulo">MEDICOS</h2>
+  <h2 class="titulo">REGISTRO DE LOS MEDICOS</h2>
 
- <!--NAVEGADOR DE TABLAS-->
+  <!--NAVEGADOR DE TABLAS-->
 
- <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#" >Medicos</a>
+      <a class="nav-link active" aria-current="page" href="#">Medicos</a>
     </li>
   </ul>
 
@@ -83,6 +83,7 @@
           <th>Acciones</th>
         </tr>
       </thead>
+
 
       <tbody>
         <?php
@@ -151,7 +152,7 @@
       <button id="agregar" class="agregarBtn">Agregar</button>
     </div>
 
-    </div>
+  </div>
 
 
 

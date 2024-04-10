@@ -54,7 +54,7 @@
   </div>
 
   <!--TITULO-->
-  <h2 class="titulo">DIRECCIÓN</h2>
+  <h2 class="titulo">REGISTRO DE LAS DIRECCIONES</h2>
 
   <!--NAVEGADOR DE TABLAS-->
   <ul class="nav nav-tabs">

@@ -55,11 +55,18 @@
   </div>
 
   <!--TITULO-->
-  <h2 class="titulo">SUSTITUCIONES</h2>
+  <h2 class="titulo">SUSTITUCIÓN DE MEDICOS</h2>
+
+  <!--NAVEGADOR DE TABLAS-->
+
+ <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#" >Sustituciones</a>
+    </li>
+  </ul>
 
   <!--TABLA-->
-  <div class="tabla">
-
+<div class="conten-container">
     <table class="sustitucion">
       <thead>
         <tr>
@@ -92,7 +99,7 @@
     <div class="crud-buttons">
       <button id="agregar" class="agregarBtn" onclick="">Agregar</button>
     </div>
-  </div>
+    </div>
 
   <!--FORMULARIO PARA AGREGAR DATOS-->
   <div id="formularioContainer" class="formulario-container">

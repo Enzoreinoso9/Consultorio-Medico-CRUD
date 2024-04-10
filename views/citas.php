@@ -55,11 +55,19 @@
 
 
   <!--TITULO-->
-  <h2 class="titulo">CITAS</h2>
+  <h2 class="titulo">CITAS DE PACIENTES</h2>
+
+  <!--NAVEGADOR DE TABLAS-->
+
+ <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#" >Citas</a>
+    </li>
+  </ul>
 
 
   <!--TABLA-->
-  <div class="tabla">
+  <div class="conten-container">
 
     <table class="cita">
       <thead>

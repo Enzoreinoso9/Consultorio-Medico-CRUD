@@ -54,7 +54,7 @@
   </div>
 
   <!--TITULO-->
-  <h2 class="titulo">EMPLEADOS</h2>
+  <h2 class="titulo">REGISTRO DE LOS EMPLEADOS</h2>
 
   <!--NAVEGADOR DE TABLAS-->
 
@@ -82,21 +82,64 @@
         </tr>
       </thead>
 
+
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Enzo Exequiel</td>
-          <td>Reinoso</td>
-          <td>Masculino</td>
-          <td>26/04/1999</td>
-          <td>3704232312</td>
-          <td>enzo@gmail.com</td>
-          <td>Aux. Enfermeria</td>
-          <td style="white-space: nowrap;">
+        <?php
+      include '../config/connection.php';
+
+        $sql =  "SELECT
+      empleados.id_empleado,
+      registros.nombres AS nombres,
+      registros.apellidos AS apellidos,
+      personas.sexo,
+      personas.fecha_nacimiento,
+      datos_personales.telefonos,
+      datos_personales.correo,
+      puestos_trabajos.nombre_puesto AS puesto
+  FROM
+      empleados
+      INNER JOIN personas ON empleados.id_persona = personas.id_persona
+      INNER JOIN datos_personales ON personas.id_persona = datos_personales.id_persona
+      INNER JOIN puestos_trabajos ON empleados.id_puesto = puestos_trabajos.id_puesto
+      INNER JOIN registros ON personas.id_registro = registros.id_registro";
+
+        $result = $conn->query($sql);
+
+        if ($result === false) {
+          die('Error en la consulta: ' . $conn->error);
+        }
+
+        if ($result->num_rows > 0) {
+
+
+          while ($row = $result->fetch_assoc()) {
+
+            //Registrar los datos
+            echo "<tr>";
+            echo "<td>" . $row["id_empleado"] . "</td>";
+            echo "<td>" . $row["nombres"] . "</td>";
+            echo "<td>" . $row["apellidos"] . "</td>";
+            echo "<td>" . $row["sexo"] . "</td>";
+            echo "<td>" . $row["fecha_nacimiento"] . "</td>";
+            echo "<td>" . $row["telefonos"] . "</td>";
+            echo "<td>" . $row["correo"] . "</td>";
+            echo "<td>" . $row["puesto"] . "</td>";
+            echo '<td style="white-space: nowrap;">
             <button class="editarBtn" onclick="">Editar</button>
-            <button class="eliminarBtn" onclick="">Eliminar</button>
-          </td>
-        </tr>
+            <a href="../config/eliminar-empleado.php?id=' . $row["id_empleado"] . '" class="eliminarBtn" >Eliminar</a>
+            </td>';
+            echo "</tr>";
+          }
+        } else { //No hay registros ingresados
+          echo "<tr>";
+          echo "<td colspan='9'>No hay registros</td>";
+          echo "</tr>";
+        }
+
+        //Cerrar conexión
+        $conn->close();
+
+        ?>
       </tbody>
     </table>
 
@@ -111,7 +154,7 @@
     <div class="formulario">
       <span id="cerrar" class="cerrar-formulario">&times;</span>
       <h2>Registrar Empleado</h2>
-      <form class="empleado-form" action="../config/.php" method="post">
+      <form class="empleado-form" action="../config/guardar-empleado.php" method="post">
 
         <div class="form-grupo">
           <label for="">Nombres:</label>

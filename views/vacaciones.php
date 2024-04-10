@@ -55,7 +55,7 @@
   </div>
 
   <!--TITULO-->
-  <h2 class="titulo"> VACACIONES</h2>
+  <h2 class="titulo">REGISTRO DE VACACIONES</h2>
 
 
   <!--NAVEGADOR DE TABLAS-->

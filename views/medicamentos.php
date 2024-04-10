@@ -55,7 +55,7 @@
     </div>
 
     <!--TITULO-->
-    <h2 class="titulo">MEDICAMENTOS</h2>
+    <h2 class="titulo">REGISTRO DE LOS MEDICAMENTOS</h2>
 
     <!--NAVEGADOR DE TABLAS-->
     <ul class="nav nav-tabs">

@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener y validar los datos del formulario
@@ -39,21 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 // 5. Insertar en la tabla `especialidades`
-    $id_especialidad = $conn->insert_id;
+    /*$id_especialidad = $conn->insert_id;
     $sql_especialidad = "INSERT INTO especialidades (id_especialidad, nombre) VALUES ('$id_especialidad', '$especialidad')";
-    $conn->query($sql_especialidad);
+    $conn->query($sql_especialidad);*/
 
 
     //6.Insertar MedicoxEspecialidad
     $id_medicoespe = $conn->insert_id;
-    $sql_medicoxespe = "INSERT INTO medicosxespecialidades (id_medicoespe, id_medico, id_especialidad) VALUES ('$id_medicoespe', '$id_medico', '$id_especialidad')";
+    $sql_medicoxespe = "INSERT INTO medicosxespecialidades (id_medicoespe, id_medico, id_especialidad) VALUES ('$id_medicoespe', '$id_medico', '$especialidad')";
     $conn->query($sql_medicoxespe);
-
-
-    $id_documentacion = $conn->insert_id;
-    //7. Insertar tabla documentacion id 
-    $sql_documentacion = "INSERT INTO documentaciones (id_documentacion) VALUES ('$id_documentacion')";
-    $conn->query($sql_documentacion);
 
 
 

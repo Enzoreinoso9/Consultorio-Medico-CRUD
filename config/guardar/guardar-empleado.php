@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener y validar los datos del formulario
@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fechaN = $_POST["fechaN"];
     $telefono = $_POST["telefono"];
     $correo = $_POST["correo"];
-    $puesto = $_POST["puesto"];
+    $id_puesto = $_POST["puesto"];
 
 //Iniciar Transacción
 $conn->begin_transaction();
@@ -32,9 +32,9 @@ $conn->query($sql_datos_personales);
 
 
 //4-Insertar tabla puesto de trabajo
-$id_puesto = $conn-> insert_id;
+/*$id_puesto = $conn-> insert_id;
 $sql_puesto_trabajo = "INSERT INTO puestos_trabajos (id_puesto, nombre_puesto) VALUES ('$id_puesto', '$puesto')";
-$conn->query($sql_puesto_trabajo);
+$conn->query($sql_puesto_trabajo);*/
 
 
 //5-Insertar tabla empleados

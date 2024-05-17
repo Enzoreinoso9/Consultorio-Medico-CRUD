@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación</title>
+    <title>Consultorio | Documentaciones</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="documentacion.css">
 </head>
@@ -15,7 +15,7 @@
     <div class="navegador">
         <nav class="navbar navbar-expand-lg bg-body-white">
             <div class="container-fluid">
-                <a class="navbar-brand" href="menu.php" style="color: white;"><b>MAPRIFOR</b></a>
+                <a class="navbar-brand" href="menu.php" style="color: white;"><b>CONSULTORIO</b></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -45,8 +45,8 @@
                             <a class="nav-link" href="pacientes.php"><b>Pacientes</b></a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <form class="d-flex" id="buscarForm" role="search">
+                        <input class="form-control me-2" type="search" id="buscar" placeholder="Buscar" aria-label="Search">
                         <button class="btn btn-outline-primary" type="submit" style="color: white;">Buscar</button>
                     </form>
                 </div>
@@ -73,13 +73,18 @@
     <div class="conten-container">
         <div id="table-medicos" class="table-container">
 
+        <form class="d-flex" id="buscarForm" role="search">
+            <input class="form-control me-2" type="search" id="buscarInputM" placeholder="Buscar" aria-label="Search">
+          </form>
 
-            <table class="documentacion">
+            <div class="crud-buttons">
+                <button id="agregarM" class="agregarBtn">Agregar</button>
+            </div>
+
+            <table class="documentacionM">
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
                         <th>Tipo de Documento</th>
                         <th>DNI</th>
                         <th>NIF</th>
@@ -90,28 +95,65 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Luana Magali</td>
-                        <td>Gon</td>
-                        <td>DNI</td>
-                        <td>41351343</td>
-                        <td>20413513430</td>
-                        <td>913423123425</td>
-                        <td>MED-2524</td>
-                        <td>1</td>
-                        <td style="white-space: nowrap;">
-                            <button class="editarBtn" onclick="">Editar</button>
-                            <button class="eliminarBtn" onclick="">Eliminar</button>
-                        </td>
-                    </tr>
+                <tbody id="medicoTableBody">
+                    <?php
+                    include '../config/connection.php';
+
+                    $sql =  "SELECT
+            documentaciones.id_documentacion AS documentacion,
+            documentaciones.tipo_documento AS tipo,
+            documentaciones.dni,
+            documentaciones.nif,
+            documentaciones.nro_seguridad_social AS nss,
+            profesionales.nro_colegiado,
+            medicos.id_medico
+    FROM
+        documentaciones
+        INNER JOIN documentacionesxprofesionales ON documentaciones.id_documentacion = documentacionesxprofesionales.id_documentacion
+        INNER JOIN profesionales ON documentacionesxprofesionales.id_profesional = profesionales.id_profesional
+        INNER JOIN medicos ON documentaciones.id_medico = medicos.id_medico";
+
+                    $result = $conn->query($sql);
+
+                    if ($result === false) {
+                        die('Error en la consulta: ' . $conn->error);
+                    }
+
+                    if ($result->num_rows > 0) {
+
+
+                        while ($row = $result->fetch_assoc()) {
+
+                            //Registrar los datos
+                            echo "<tr>";
+                            echo "<td>" . $row["documentacion"] . "</td>";
+                            echo "<td>" . $row["tipo"] . "</td>";
+                            echo "<td>" . $row["dni"] . "</td>";
+                            echo "<td>" . $row["nif"] . "</td>";
+                            echo "<td>" . $row["nss"] . "</td>";
+                            echo "<td>" . $row["nro_colegiado"] . "</td>";
+                            echo "<td>" . $row["id_medico"] . "</td>";
+                            echo '<td style="white-space: nowrap;">
+                            <a href="#" id="editar" class="editarBtn">Editar</a>
+                            <a href="../config/eliminar/eliminar-documentacion.php?id=' . $row["documentacion"] . '" class="eliminarBtn" >Eliminar</a>
+                        </td>';
+                            echo "</tr>";
+                        }
+                    } else { //No hay registros ingresados
+                        echo "<tr>";
+                        echo "<td colspan='8'>No hay registros</td>";
+                        echo "</tr>";
+                    }
+
+                    //Cerrar conexión
+                    $conn->close();
+
+                    ?>
                 </tbody>
             </table>
 
-            <div class="crud-buttons">
-                <button id="agregar" class="agregarBtn">Agregar</button>
-            </div>
+            <p id="busquedaNoResultadaM" style="display:none; font-weight:bold; text-align:center">La documentación de medico que buscas no existe</p>
+
 
         </div>
 
@@ -119,14 +161,18 @@
 
         <div id="table-empleados" class="table-container">
 
+        <form class="d-flex" id="buscarForm" role="search">
+            <input class="form-control me-2" type="search" id="buscarInputE" placeholder="Buscar" aria-label="Search">
+          </form>
 
-            <table class="documentacion">
+            <div class="crud-buttons">
+                <button id="agregarE" class="agregarBtn">Agregar</button>
+            </div>
+
+            <table class="documentacionE">
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Puesto de Trabajo</th>
                         <th>Tipo de Documento</th>
                         <th>DNI</th>
                         <th>NIF</th>
@@ -136,42 +182,78 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Enzo Exequiel</td>
-                        <td>Reinoso</td>
-                        <td>Aux. Enfermeria</td>
-                        <td>Pasaporte</td>
-                        <td>41351343</td>
-                        <td>20413513430</td>
-                        <td>20134534261</td>
-                        <td>1</td>
-                        <td style="white-space: nowrap;">
-                            <button class="editarBtn" onclick="">Editar</button>
-                            <button class="eliminarBtn" onclick="">Eliminar</button>
-                        </td>
-                    </tr>
+                <tbody id="empleadoTableBody">
+                    <?php
+                    include '../config/connection.php';
+
+                    $sql =  "SELECT
+            documentaciones.id_documentacion AS documentacion,
+            documentaciones.tipo_documento AS tipo,
+            documentaciones.dni,
+            documentaciones.nif,
+            documentaciones.nro_seguridad_social AS nss,
+            empleados.id_empleado AS empleado
+    FROM
+        documentaciones
+    INNER JOIN empleados ON documentaciones.id_empleado = empleados.id_empleado";
+
+                    $result = $conn->query($sql);
+
+                    if ($result === false) {
+                        die('Error en la consulta: ' . $conn->error);
+                    }
+
+                    if ($result->num_rows > 0) {
+
+
+                        while ($row = $result->fetch_assoc()) {
+
+                            //Registrar los datos
+                            echo "<tr>";
+                            echo "<td>" . $row["documentacion"] . "</td>";
+                            echo "<td>" . $row["tipo"] . "</td>";
+                            echo "<td>" . $row["dni"] . "</td>";
+                            echo "<td>" . $row["nif"] . "</td>";
+                            echo "<td>" . $row["nss"] . "</td>";
+                            echo "<td>" . $row["empleado"] . "</td>";
+                            echo '<td style="white-space: nowrap;">
+                            <a href="#" id="editar" class="editarBtn">Editar</a>
+              <a href="../config/eliminar/eliminar-documentacion.php?id=' . $row["documentacion"] . '" class="eliminarBtn" >Eliminar</a>
+              </td>';
+                            echo "</tr>";
+                        }
+                    } else { //No hay registros ingresados
+                        echo "<tr>";
+                        echo "<td colspan='7'>No hay registros</td>";
+                        echo "</tr>";
+                    }
+
+                    //Cerrar conexión
+                    $conn->close();
+
+                    ?>
                 </tbody>
             </table>
-
-            <div class="crud-buttons">
-                <button id="agregar" class="agregarBtn">Agregar</button>
-            </div>
-
+            <p id="busquedaNoResultadaE" style="display:none; font-weight:bold; text-align:center">La documentación de empleado que buscas no existe</p>
         </div>
 
 
 
         <div id="table-pacientes" class="table-container">
 
+        <form class="d-flex" id="buscarForm" role="search">
+            <input class="form-control me-2" type="search" id="buscarInputP" placeholder="Buscar" aria-label="Search">
+            </form>
 
-            <table class="documentacion">
+            <div class="crud-buttons">
+                <button id="agregarP" class="agregarBtn">Agregar</button>
+            </div>
+
+
+            <table class="documentacionP">
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Nombres</th>
-                        <th>Apellido</th>
                         <th>Tipo de Documento</th>
                         <th>DNI</th>
                         <th>NIF</th>
@@ -181,72 +263,100 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Gianna Micaela</td>
-                        <td>Reinoso</td>
-                        <td>DNI</td>
-                        <td>41351343</td>
-                        <td>20413513430</td>
-                        <td>20494919293</td>
-                        <td>1</td>
-                        <td style="white-space: nowrap;">
-                            <button class="editarBtn" onclick="">Editar</button>
-                            <button class="eliminarBtn" onclick="">Eliminar</button>
-                        </td>
-                    </tr>
+                <tbody id="pacienteTableBody">
+                    <?php
+                    include '../config/connection.php';
+
+                    $sql =  "SELECT
+            documentaciones.id_documentacion AS documentacion,
+            documentaciones.tipo_documento AS tipo,
+            documentaciones.dni,
+            documentaciones.nif,
+            documentaciones.nro_seguridad_social AS nss,
+            pacientes.id_paciente AS paciente
+    FROM
+        documentaciones
+    INNER JOIN pacientes ON documentaciones.id_paciente = pacientes.id_paciente";
+
+                    $result = $conn->query($sql);
+
+                    if ($result === false) {
+                        die('Error en la consulta: ' . $conn->error);
+                    }
+
+                    if ($result->num_rows > 0) {
+
+
+                        while ($row = $result->fetch_assoc()) {
+
+                            //Registrar los datos
+                            echo "<tr>";
+                            echo "<td>" . $row["documentacion"] . "</td>";
+                            echo "<td>" . $row["tipo"] . "</td>";
+                            echo "<td>" . $row["dni"] . "</td>";
+                            echo "<td>" . $row["nif"] . "</td>";
+                            echo "<td>" . $row["nss"] . "</td>";
+                            echo "<td>" . $row["paciente"] . "</td>";
+                            echo '<td style="white-space: nowrap;">
+                            <a href="#" id="editar" class="editarBtn">Editar</a>
+              <a href="../config/eliminar/eliminar-documentacion.php?id=' . $row["documentacion"] . '" class="eliminarBtn" >Eliminar</a>
+              </td>';
+                            echo "</tr>";
+                        }
+                    } else { //No hay registros ingresados
+                        echo "<tr>";
+                        echo "<td colspan='7'>No hay registros</td>";
+                        echo "</tr>";
+                    }
+
+                    //Cerrar conexión
+                    $conn->close();
+
+                    ?>
                 </tbody>
             </table>
+            <p id="busquedaNoResultadaP" style="display:none; font-weight:bold; text-align:center">La documentacion del paciente que buscas no existe</p>
 
-            <div class="crud-buttons">
-                <button id="agregar" class="agregarBtn">Agregar</button>
-            </div>
         </div>
 
     </div>
 
 
-    <!--FORMULARIO PARA AGREGAR DATOS-->
-    <div id="formularioContainer" class="formulario-container">
+    <!--FORMULARIO PARA AGREGAR DOCUMENTACION MEDICOS-->
+    <div id="formularioAgregarM" class="formulario-container">
         <div class="formulario">
-            <span id="cerrar" class="cerrar-formulario">&times;</span>
-            <h2>Registrar Empleado</h2>
-            <form class="documentacion-form" action="../config/.php" method="post">
+            <span id="cerrarAgregarM" class="cerrar-formulario">&times;</span>
+            <h2>Registrar Medicos</h2>
+            <form class="documentacion-form" action="../config/guardar/guardar-documentacion.php" method="post">
 
                 <div class="form-grupo">
-                    <label for="">Nombres:</label>
-                    <input type="text" name="nombre" id="nombre">
+                    <label for="">Tipo de Documento:</label>
+                    <input type="text" name="tipo" id="tipo">
                 </div>
 
                 <div class="form-grupo">
-                    <label for="">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido">
+                    <label for="">DNI:</label>
+                    <input type="text" name="dni" id="dni">
                 </div>
 
                 <div class="form-grupo">
-                    <label for="">Sexo:</label>
-                    <input type="text" name="sexo" id="sexo">
+                    <label for="">NIF:</label>
+                    <input type="text" name="nif" id="nif">
                 </div>
 
                 <div class="form-grupo">
-                    <label for="">Fecha Nacimiento:</label>
-                    <input type="text" name="fechaN" id="fechaN">
+                    <label for="">Número de Seguridad Social:</label>
+                    <input type="text" name="nss" id="nss">
                 </div>
 
                 <div class="form-grupo">
-                    <label for="">Telefono:</label>
-                    <input type="text" name="telefono" id="telefono">
+                    <label for="">Número de Colegiado:</label>
+                    <input type="text" name="colegiado" id="colegiado">
                 </div>
 
                 <div class="form-grupo">
-                    <label for="">Correo:</label>
-                    <input type="email" name="correo" id="correo">
-                </div>
-
-                <div class="form-grupo">
-                    <label for="">Puesto de Trabajo:</label>
-                    <input type="text" name="puesto" id="puesto">
+                    <label for="">Id del Medico:</label>
+                    <input type="text" name="id_medico" id="id_medico">
                 </div>
 
                 <input type="submit" name="Guardar" class="guardar" value="Guardar">
@@ -257,8 +367,241 @@
 
     </div>
 
+
+
+    <!--FORMULARIO PARA EDITAR DOCUMENTACION MEDICOS-->
+    <div id="formularioEditarM" class="formulario-container">
+        <div class="formulario">
+            <span id="cerrarEditarM" class="cerrar-formulario">&times;</span>
+            <h2>Editar Medicos</h2>
+            <form class="documentacion-form" action="../config/editar/editar-documentacion.php" method="post">
+
+                <input type="hidden" name="id_documentacion" id="id_documentacionEditarM">
+
+                <div class="form-grupo">
+                    <label for="">Tipo de Documento:</label>
+                    <input type="text" name="tipo" id="tipoEditarM">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">DNI:</label>
+                    <input type="text" name="dni" id="dniEditarM">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">NIF:</label>
+                    <input type="text" name="nif" id="nifEditarM">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Número de Seguridad Social:</label>
+                    <input type="text" name="nss" id="nssEditarM">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Número de Colegiado:</label>
+                    <input type="text" name="colegiado" id="colegiadoEditarM">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Id del Medico:</label>
+                    <input type="text" name="id_medico" id="id_medicoEditarM">
+                </div>
+
+                <input type="submit" name="editar_med" class="editar" value="Actualizar">
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!--FORMULARIO PARA AGREGAR DOCUMENTACION EMPLEADOS-->
+    <div id="formularioAgregarE" class="formulario-container">
+        <div class="formulario">
+            <span id="cerrarAgregarE" class="cerrar-formulario">&times;</span>
+            <h2>Registrar Empleados</h2>
+            <form class="documentacion-form" action="../config/guardar/guardar-documentacion.php" method="post">
+
+                <div class="form-grupo">
+                    <label for="">Tipo de Documento:</label>
+                    <input type="text" name="tipo" id="tipo">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">DNI:</label>
+                    <input type="text" name="dni" id="dni">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">NIF:</label>
+                    <input type="text" name="nif" id="nif">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Número de Seguridad Social:</label>
+                    <input type="text" name="nss" id="nss">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Id del Empleado:</label>
+                    <input type="text" name="id_empleado" id="id_empleado">
+                </div>
+
+                <input type="submit" name="Guardar" class="guardar" value="Guardar">
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!--FORMULARIO PARA EDITAR DOCUMENTACION EMPLEADOS-->
+    <div id="formularioEditarE" class="formulario-container">
+        <div class="formulario">
+            <span id="cerrarEditarE" class="cerrar-formulario">&times;</span>
+            <h2>Registrar Empleados</h2>
+            <form class="documentacion-form" action="../config/editar/editar-documentacion.php" method="post">
+
+                <input type="hidden" name="id_documentacion" id="id_documentacionEditarE">
+
+                <div class="form-grupo">
+                    <label for="">Tipo de Documento:</label>
+                    <input type="text" name="tipo" id="tipoEditarE">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">DNI:</label>
+                    <input type="text" name="dni" id="dniEditarE">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">NIF:</label>
+                    <input type="text" name="nif" id="nifEditarE">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Número de Seguridad Social:</label>
+                    <input type="text" name="nss" id="nssEditarE">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Id del Empleado:</label>
+                    <input type="text" name="id_empleado" id="id_empleadoEditarE">
+                </div>
+
+                <input type="submit" name="editar_emp" class="editar" value="Actualizar">
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--FORMULARIO PARA AGREGAR DOCUMENTACION PACIENTES-->
+    <div id="formularioAgregarP" class="formulario-container">
+        <div class="formulario">
+            <span id="cerrarAgregarP" class="cerrar-formulario">&times;</span>
+            <h2>Registrar Pacientes</h2>
+            <form class="documentacion-form" action="../config/guardar/guardar-documentacion.php" method="post">
+
+                <div class="form-grupo">
+                    <label for="">Tipo de documento:</label>
+                    <input type="text" name="tipo" id="tipo">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">DNI:</label>
+                    <input type="text" name="dni" id="dni">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">NIF:</label>
+                    <input type="text" name="nif" id="nif">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Número de Seguridad Social:</label>
+                    <input type="text" name="nss" id="nss">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Id del Paciente:</label>
+                    <input type="text" name="id_paciente" id="id_paciente">
+                </div>
+
+                <input type="submit" name="Guardar" class="guardar" value="Guardar">
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!--FORMULARIO PARA AGREGAR DOCUMENTACION PACIENTES-->
+    <div id="formularioEditarP" class="formulario-container">
+        <div class="formulario">
+            <span id="cerrarEditarP" class="cerrar-formulario">&times;</span>
+            <h2>Registrar Pacientes</h2>
+            <form class="documentacion-form" action="../config/editar/editar-documentacion.php" method="post">
+
+                <input type="hidden" name="id_documentacion" id="id_documentacionEditarP">
+
+                <div class="form-grupo">
+                    <label for="">Tipo de documento:</label>
+                    <input type="text" name="tipo" id="tipoEditarP">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">DNI:</label>
+                    <input type="text" name="dni" id="dniEditarP">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">NIF:</label>
+                    <input type="text" name="nif" id="nifEditarP">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Número de Seguridad Social:</label>
+                    <input type="text" name="nss" id="nssEditarP">
+                </div>
+
+                <div class="form-grupo">
+                    <label for="">Id del Paciente:</label>
+                    <input type="text" name="id_paciente" id="id_pacienteEditarP">
+                </div>
+
+                <input type="submit" name="editar_pac" class="editar" value="Actualizar">
+
+            </form>
+
+        </div>
+
+    </div>
+
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../functions/documentacion.js"></script>
+    <script src="../functions/busqueda.js"></script>
+    <script src="../functions/jquery.js"></script>
 </body>
 
 </html>

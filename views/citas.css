@@ -66,17 +66,33 @@ button {
 .editarBtn {
   background-color: green;
   color: #ffff;
+  display: inline-block;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .eliminarBtn {
   background-color: red;
   color: #ffff;
+  display: inline-block;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .agregarBtn {
   margin-right: 10px;
   background-color: #6a92f7;
   color: #ffff;
+  font-weight: bold;
 }
 
 /*FORMULARIO*/
@@ -133,6 +149,15 @@ button {
 .guardar {
 
   background-color: darkcyan;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.editar{
+  background-color: green;
   color: #fff;
   cursor: pointer;
   border: none;

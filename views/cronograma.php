@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Consultorio | Cronogramas </title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="cronograma.css">
 </head>
@@ -15,7 +15,7 @@
   <div class="navegador">
     <nav class="navbar navbar-expand-lg bg-body-white">
       <div class="container-fluid">
-        <a class="navbar-brand" href="menu.php" style="color: white;"><b>MAPRIFOR</b></a>
+        <a class="navbar-brand" href="menu.php" style="color: white;"><b>CONSULTORIO</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,8 +45,8 @@
               <a class="nav-link" href="pacientes.php"><b>Pacientes</b></a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+          <form class="d-flex" id="buscarForm" role="search">
+            <input class="form-control me-2" type="search" id="buscar" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-primary" type="submit" style="color: white;">Buscar</button>
           </form>
         </div>
@@ -68,77 +68,121 @@
   <!--TABLA-->
   <div class="conten-container">
 
-    <table class="cronograma">
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>Nombres</th>
-          <th>Apellido</th>
-          <th>Especialidad</th>
-          <th>Días Laborales</th>
-          <th>Horario de incio de Consultas</th>
-          <th>Horario de cierre de Consultas</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Luana Magali</td>
-          <td>Gon</td>
-          <td>General</td>
-          <td>Lunes a Jueves</td>
-          <td>17:00:00</td>
-          <td>20:00:00</td>
-          <td style="white-space: nowrap;">
-            <button class="editarBtn" onclick="">Editar</button>
-            <button class="eliminarBtn" onclick="">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <form class="d-flex" id="buscarForm" role="search">
+      <input class="form-control me-2" type="search" id="buscarInput" placeholder="Buscar" aria-label="Search">
+    </form>
 
     <div class="crud-buttons">
       <button id="agregar" class="agregarBtn" onclick="">Agregar</button>
     </div>
+
+    <table class="cronograma">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Días Laborales</th>
+          <th>Jornada de Atencion</th>
+          <th>Horario de Inicio de Consultas</th>
+          <th>Medico de turno</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody id="cronogramaTableBody">
+        <?php
+        include '../config/connection.php';
+
+        $sql = "SELECT
+            cronogramas.id_cronograma,
+            dias.dia_semana AS Dia_Laboral,
+            turnos.nombre_turnos AS turno,
+            horarios.hora_inicio AS Hora_Inicio,
+            medicos.id_medico AS Id_Medico
+        FROM
+            cronogramas
+            INNER JOIN dias ON cronogramas.id_dia = dias.id_dia
+            INNER JOIN turnos ON cronogramas.id_turno = turnos.id_turno
+            INNER JOIN horarios ON cronogramas.id_horario = horarios.id_horario
+            INNER JOIN medicos ON cronogramas.id_medico = medicos.id_medico";
+
+        $result = $conn->query($sql);
+
+        if ($result === false) {
+          die('Error en la consulta: ' . $conn->error);
+        }
+
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            // Registrar los datos
+            echo "<tr>";
+            echo "<td>" . $row["id_cronograma"] . "</td>";
+            echo "<td>" . $row["Dia_Laboral"] . "</td>";
+            echo "<td>" . $row["turno"] . "</td>";
+            echo "<td>" . $row["Hora_Inicio"] . "</td>";
+            echo "<td>" . $row["Id_Medico"] . "</td>";
+            echo '<td style="white-space: nowrap;">
+        <a href="#" id="editar" class="editarBtn">Editar</a>
+                  <a href="../config/eliminar/eliminar-cronograma.php?id=' . $row["id_cronograma"] . '" class="eliminarBtn" >Eliminar</a>
+              </td>';
+            echo "</tr>";
+          }
+        } else { // No hay registros ingresados
+          echo "<tr>";
+          echo "<td colspan='6'>No hay registros</td>";
+          echo "</tr>";
+        }
+
+        // Cerrar conexión
+        $conn->close();
+        ?>
+      </tbody>
+    </table>
+    <p id="busquedaNoResultada" style="display:none; font-weight:bold; text-align:center">El cronograma que buscas no existe</p>
+
   </div>
 
   <!--FORMULARIO PARA AGREGAR DATOS-->
   <div id="formularioContainer" class="formulario-container">
     <div class="formulario">
-      <span id="cerrar" class="cerrar-formulario">&times;</span>
+      <span id="cerrarAgregar" class="cerrar-formulario">&times;</span>
       <h2>Registrar Cronograma</h2>
-      <form class="cronograma-form" action="../config/.php" method="post">
+      <form class="cronograma-form" action="../config/guardar/guardar-cronograma.php" method="post">
 
-        <div class="form-grupo">
-          <label for="">Nombres:</label>
-          <input type="text" name="nombre" id="nombre">
-        </div>
-
-        <div class="form-grupo">
-          <label for="">Apellido:</label>
-          <input type="text" name="apellido" id="apellido">
-        </div>
-
-        <div class="form-grupo">
-          <label for="">Especialidad:</label>
-          <input type="text" name="sexo" id="sexo">
-        </div>
 
         <div class="form-grupo">
           <label for="">Días Laborales:</label>
-          <input type="text" name="fechaN" id="fechaN">
+          <input type="text" name="dialaboral" id="dialaboral">
         </div>
 
         <div class="form-grupo">
-          <label for="">Horario de Inicio:</label>
-          <input type="text" name="telefono" id="telefono">
+          <label for="">Jornada de Atención:</label>
+          <Select name="turno" id="turno">
+            <option value="1">Mañana</option>
+            <option value="2">Tarde</option>
+          </Select>
         </div>
 
         <div class="form-grupo">
-          <label for="">Horario de Cierre:</label>
-          <input type="email" name="correo" id="correo">
+          <label for="">Horario de Cosulta:</label>
+          <select name="horainicio" id="horainicio">
+            <option value="1">8:00 hs</option>
+            <option value="2">9:00 hs</option>
+            <option value="3">10:00 hs</option>
+            <option value="4">11:00 hs</option>
+            <option value="5">12:00 hs</option>
+            <option value="6">16:00 hs</option>
+            <option value="7">17:00 hs</option>
+            <option value="8">18:00 hs</option>
+            <option value="9">19:00 hs</option>
+            <option value="10">20:00 hs</option>
+            <option value="11">21:00 hs</option>
+          </select>
+        </div>
+
+
+        <div class="form-grupo">
+          <label for="">Medico de turno:</label>
+          <input type="text" name="id_medico" id="id_medico">
         </div>
 
         <input type="submit" name="Guardar" class="guardar" value="Guardar">
@@ -149,8 +193,63 @@
 
   </div>
 
+
+  <!--FORMULARIO PARA EDITAR DATOS-->
+  <div id="formularioEditar" class="formulario-container">
+    <div class="formulario">
+      <span id="cerrarEditar" class="cerrar-formulario">&times;</span>
+      <h2>Registrar Cronograma</h2>
+      <form class="cronograma-form" action="../config/editar/editar-cronograma.php" method="post">
+
+        <input type="hidden" name="id_cronograma" id="id_cronogramaEditar">
+
+        <div class="form-grupo">
+          <label for="">Días Laborales:</label>
+          <input type="text" name="dialaboral" id="dialaboralEditar">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Jornada de Atención:</label>
+          <Select name="turno" id="turnoEditar">
+            <option value="1">Mañana</option>
+            <option value="2">Tarde</option>
+          </Select>
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Horario de Cosulta:</label>
+          <select name="horainicio" id="horainicioEditar">
+            <option value="1">8:00 hs</option>
+            <option value="2">9:00 hs</option>
+            <option value="3">10:00 hs</option>
+            <option value="4">11:00 hs</option>
+            <option value="5">12:00 hs</option>
+            <option value="6">16:00 hs</option>
+            <option value="7">17:00 hs</option>
+            <option value="8">18:00 hs</option>
+            <option value="9">19:00 hs</option>
+            <option value="10">20:00 hs</option>
+            <option value="11">21:00 hs</option>
+          </select>
+        </div>
+
+
+        <div class="form-grupo">
+          <label for="">Medico de turno:</label>
+          <input type="text" name="id_medico" id="id_medicoEditar">
+        </div>
+
+        <input type="submit" name="editar_cronograma" class="editar" value="Actualizar">
+
+      </form>
+
+    </div>
+
+  </div>
+
   <script src="../js/bootstrap.bundle.min.js"></script>
   <script src="../functions/cronograma.js"></script>
+  <script src="../functions/busqueda.js"></script>
 </body>
 
 </html>

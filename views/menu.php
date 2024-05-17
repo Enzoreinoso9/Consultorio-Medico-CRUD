@@ -1,10 +1,20 @@
+<?php
+session_start();
+
+// Verificar usuario
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menú | Inicio</title>
+  <title>Consultorio | Inicio</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="menu.css">
 </head>
@@ -14,7 +24,7 @@
   <div class="navegador">
     <nav class="navbar navbar-expand-lg bg-body-white">
       <div class="container-fluid">
-        <a class="navbar-brand" href="menu.php" style="color: white;"><b>MAPRIFOR</b></a>
+        <a class="navbar-brand" href="menu.php" style="color: white;"><b>CONSULTORIO</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -46,10 +56,11 @@
               <a class="nav-link" href="pacientes.php"><b>Pacientes</b></a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+          <form class="d-flex" id="buscarForm" role="search">
+            <input class="form-control me-2" type="search" id="buscar" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-primary" type="submit" style="color: white;">Buscar</button>
           </form>
+          <a href="../config/cerrar-sesion.php" class="btn btn-danger">Cerrar Sesión</a>
         </div>
       </div>
     </nav>
@@ -88,6 +99,7 @@
     </div>
 
 <script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../functions/busqueda.js" ></script>
   </section>
 </body>
 

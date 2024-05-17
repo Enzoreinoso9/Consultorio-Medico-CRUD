@@ -1,12 +1,12 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
 // Verificar si se proporciona un ID válido
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Eliminar relaciones en la tabla medicosXespecialidades
-    $eliminar_relaciones = "DELETE FROM medicosXespecialidades WHERE id_medico='$id'";
+    $eliminar_relaciones = "DELETE FROM medicosXespecialidades WHERE id_medicoespe='$id'";
     $resultado_relaciones = mysqli_query($conn, $eliminar_relaciones);
 
     // Verificar si la eliminación de relaciones fue exitosa
@@ -15,20 +15,22 @@ if (isset($_GET['id'])) {
         exit; // Salir del script si hay un error
     }
 
-    // Eliminar al médico de la tabla medicos
+
     $eliminar_medico = "DELETE FROM medicos WHERE id_medico='$id'";
     $resultado_medico = mysqli_query($conn, $eliminar_medico);
 
-    // Verificar si la eliminación del médico fue exitosa
+    
     if (!$resultado_medico) {
         echo "Error al intentar eliminar el médico: " . mysqli_error($conn);
-        exit; // Salir del script si hay un error
+        exit; 
     }
 
-    // Si llegamos aquí, la eliminación fue exitosa
-    echo "El médico ha sido eliminado exitosamente.";
+    $eliminar_esp = "DELETE FROM especialidades WHERE id_especialidad='$id'";
+    $resultado_esp = mysqli_query($conn, $eliminar_esp);
+
+
+    echo '<script> alert("El medico ha sido eliminado exitosamente.");</script>.';
 } else {
-    // Si no se proporciona un ID válido
     echo "ID no proporcionado o no válido.";
 }
 

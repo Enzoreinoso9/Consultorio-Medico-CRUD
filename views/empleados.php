@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Empleados</title>
+  <title>Consultorio | Empleados</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="empleados.css">
 </head>
@@ -14,7 +14,7 @@
   <div class="navegador">
     <nav class="navbar navbar-expand-lg bg-body-white">
       <div class="container-fluid">
-        <a class="navbar-brand" href="menu.php" style="color: white;"><b>MAPRIFOR</b></a>
+        <a class="navbar-brand" href="menu.php" style="color: white;"><b>CONSULTORIO</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,8 +44,8 @@
               <a class="nav-link" href="pacientes.php"><b>Pacientes</b></a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+          <form class="d-flex" id="buscarForm" role="search">
+            <input class="form-control me-2" type="search" id="buscar" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-primary" type="submit" style="color: white;">Buscar</button>
           </form>
         </div>
@@ -67,6 +67,14 @@
   <!--TABLA-->
   <div class="conten-container">
 
+  <form class="d-flex" id="buscarForm" role="search">
+            <input class="form-control me-2" type="search" id="buscarInput" placeholder="Buscar" aria-label="Search">
+          </form>
+
+    <div class="crud-buttons">
+      <button id="agregar" class="agregarBtn" onclick="">Agregar</button>
+    </div>
+
     <table class="empleado">
       <thead>
         <tr>
@@ -83,9 +91,9 @@
       </thead>
 
 
-      <tbody>
+      <tbody id="empleadoTableBody">
         <?php
-      include '../config/connection.php';
+        include '../config/connection.php';
 
         $sql =  "SELECT
       empleados.id_empleado,
@@ -125,8 +133,8 @@
             echo "<td>" . $row["correo"] . "</td>";
             echo "<td>" . $row["puesto"] . "</td>";
             echo '<td style="white-space: nowrap;">
-            <button class="editarBtn" onclick="">Editar</button>
-            <a href="../config/eliminar-empleado.php?id=' . $row["id_empleado"] . '" class="eliminarBtn" >Eliminar</a>
+            <a href="#" id="editar" class="editarBtn">Editar</a>
+            <a href="../config/eliminar/eliminar-empleado.php?id=' . $row["id_empleado"] . '" class="eliminarBtn" >Eliminar</a>
             </td>';
             echo "</tr>";
           }
@@ -142,19 +150,17 @@
         ?>
       </tbody>
     </table>
+    <p id="busquedaNoResultada" style="display:none; font-weight:bold; text-align:center">El empleado que buscas no existe</p>
 
-    <div class="crud-buttons">
-      <button id="agregar" class="agregarBtn" onclick="">Agregar</button>
-    </div>
   </div>
 
 
   <!--FORMULARIO PARA AGREGAR DATOS-->
   <div id="formularioContainer" class="formulario-container">
     <div class="formulario">
-      <span id="cerrar" class="cerrar-formulario">&times;</span>
+      <span id="cerrarAgregar" class="cerrar-formulario">&times;</span>
       <h2>Registrar Empleado</h2>
-      <form class="empleado-form" action="../config/guardar-empleado.php" method="post">
+      <form class="empleado-form" action="../config/guardar/guardar-empleado.php" method="post">
 
         <div class="form-grupo">
           <label for="">Nombres:</label>
@@ -188,7 +194,12 @@
 
         <div class="form-grupo">
           <label for="">Puesto de Trabajo:</label>
-          <input type="text" name="puesto" id="puesto">
+          <select name="puesto" id="puesto">
+            <option value="1">ATS de zona</option>
+            <option value="2">Aux. de Enfermeria</option>
+            <option value="3">Celadores</option>
+            <option value="4">Administrativos</option>
+          </select>
         </div>
 
         <input type="submit" name="Guardar" class="guardar" value="Guardar">
@@ -199,8 +210,68 @@
 
   </div>
 
+
+  <!--FORMULARIO PARA EDITAR DATOS-->
+  <div id="formularioEditar" class="formulario-container">
+    <div class="formulario">
+      <span id="cerrarEditar" class="cerrar-formulario">&times;</span>
+      <h2>Editar Empleado</h2>
+      <form class="empleado-form" action="../config/editar/editar-empleado.php" method="post">
+
+        <input type="hidden" name="id_empleado" id="id_empleadoEditar">
+
+        <div class="form-grupo">
+          <label for="">Nombres:</label>
+          <input type="text" name="nombre" id="nombreEditar">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Apellido:</label>
+          <input type="text" name="apellido" id="apellidoEditar">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Sexo:</label>
+          <input type="text" name="sexo" id="sexoEditar">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Fecha Nacimiento:</label>
+          <input type="text" name="fechaN" id="fechaNEditar">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Telefono:</label>
+          <input type="text" name="telefono" id="telefonoEditar">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Correo:</label>
+          <input type="email" name="correo" id="correoEditar">
+        </div>
+
+        <div class="form-grupo">
+          <label for="">Puesto de Trabajo:</label>
+          <select name="puesto" id="puestoEditar">
+            <option value="1">ATS de zona</option>
+            <option value="2">Aux. de Enfermeria</option>
+            <option value="3">Celadores</option>
+            <option value="4">Administrativos</option>
+          </select>
+        </div>
+
+        <input type="submit" name="editar_emp" class="editar" value="Actualizar">
+
+      </form>
+
+    </div>
+
+  </div>
+
   <script src="../js/bootstrap.bundle.min.js"></script>
   <script src="../functions/empleados.js"></script>
+  <script src="../functions/busqueda.js"></script>
+  <script src="../functions/jquery.js"></script>
 </body>
 
 </html>

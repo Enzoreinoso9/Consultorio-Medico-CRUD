@@ -66,17 +66,33 @@ button{
   .editarBtn {
     background-color: green;
     color: #ffff;
+    display: inline-block;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
   }
 
   .eliminarBtn{
     background-color: red;
     color: #ffff;
+    display: inline-block;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   .agregarBtn {
     margin-right: 10px;
     background-color: #6a92f7;
     color: #ffff;
+    font-weight: bold;
   }
 
   /*FORMULARIO*/
@@ -99,7 +115,10 @@ button{
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 500px;
+    width: 400px; 
+    max-width: 90%; /*Asegurar que no sea mas ancho que la pagina*/
+    max-height: 90%;
+    overflow-y: auto; /* Agregar desplazamiento vertical si el contenido excede la altura máxima */
     margin-bottom: 50px;
     margin-top: 50px;
   }
@@ -121,18 +140,28 @@ button{
 .form-grupo label{
 
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 
-.form-grupo input{
-  width: 100%;
-  padding: 1px;
+.form-grupo input,
+.form-grupo textarea {
+  width: calc(100% - 10px);
+  padding: 5px;
   box-sizing: border-box;
 }
 
 .guardar{
 
   background-color: darkcyan;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+.editar{
+  background-color: green;
   color: #fff;
   cursor: pointer;
   border: none;
